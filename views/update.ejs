@@ -1,0 +1,48 @@
+<%- include("templates/header") %>
+
+<div class="container-fluid p-5">
+    
+    <form action="/updateproduct<%= docs._id %>" method="post">
+        <div class="modal-body">
+          <h2 class="mb-3">Actualizar producto</h2>
+          <div class="row">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Código</label>
+              <input type="text" class="form-control" placeholder="G01" required name="codigo" id="codigo" value="<%= docs.codigo %>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+              <input type="text" class="form-control" placeholder="Fanta" required name="nombre" id="nombre" value="<%= docs.nombre %>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Empresa</label>
+              <input type="text" class="form-control" placeholder="Coca Cola Company" required name="empresa" value="<%= docs.empresa %>"
+                id="empresa">
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Tipo</label>
+              <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Gaseosa" value="<%= docs.tipo %>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Precio</label>
+              <input type="text" class="form-control" placeholder="00.00" required name="precio" id="precio" value="<%= docs.precio %>">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="/" class="btn btn-danger" >Cancelar</a>
+          <input type="submit" value="Actualizar" class="btn btn-success">
+        </div>
+      </form>
+
+</div>
+
+<%- include("templates/footer") %>

@@ -1,0 +1,107 @@
+<%- include("templates/header") %>
+  <div class="container-fluid p-5">
+    <div class="row col-2 pb-3">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Registrar nuevo producto
+      </button>
+    </div>
+    <div class="row">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Precio</th>
+            <th scope="col" colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% docs.forEach( user=> { %>
+            <tr>
+              <th scope="row">
+                <%= user.codigo %>
+              </th>
+              <td>
+                <%= user.nombre %>
+              </td>
+              <td>
+                <%= user.empresa %>
+              </td>
+              <td>
+                <%= user.tipo %>
+              </td>
+              <td>
+                <%= user.precio %>
+              </td>
+              <td>
+                <a type="button" class="btn btn-primary" href="/update<%= user._id %>">
+                  Editar
+                </a>
+              </td>
+              <td>
+                <form action="/delete<%=user._id%>" method="post">
+                  <input type="submit" class="btn btn-danger" role="button" value="Eliminar">
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Nuevo producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/create" method="post">
+          <div class="modal-body">
+            <div class="row">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Código</label>
+                <input type="text" class="form-control" placeholder="G01" required name="codigo" id="codigo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Fanta" required name="nombre" id="nombre">
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Empresa</label>
+                <input type="text" class="form-control" placeholder="Coca Cola Company" required name="empresa"
+                  id="empresa">
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tipo</label>
+                <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Gaseosa">
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Precio</label>
+                <input type="text" class="form-control" placeholder="00.00" required name="precio" id="precio">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" value="Registrar" class="btn btn-success">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <%- include("templates/footer") %>

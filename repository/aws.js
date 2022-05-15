@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk');
-const { contentType } = require('express/lib/response');
 
 AWS.config.update({region: 'us-east-1'});
 

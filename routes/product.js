@@ -93,14 +93,15 @@ router.post('/delete:id', function(req, res, next){
   const id = req.params.id;
   const key = req.body.imagendelete;
 
-  aws.deleteImage(key);
+  await aws.deleteImage(key);
   
   model.remove({
     _id: id
   }, function(err){
     if(err) return console.log(err);
-    res.redirect('/');
   });
+
+  return res.redirect('/');
 
 });
 

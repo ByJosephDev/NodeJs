@@ -42,7 +42,24 @@
           <input type="submit" value="Actualizar" class="btn btn-success">
         </div>
       </form>
-
+      <% if(docs.imagen != ''){%>
+        <div class="row">
+          <div class="mb-3 col-3">
+            <label class="form-label">Cambiar imagen (<%= docs.imagen %>)</label>
+            <form action="/updateImage<%= docs.codigo %>" method="post" enctype="multipart/form-data">
+              <div class="row d-flex">
+                <div class="col-9">
+                  <input type="text" hidden="true" required name="imagendelete" id="imagendelete" value="<%= docs.imagen %>">
+                  <input type="file" class="form-control" required name="imagenupdate" id="imagenupdate">
+                </div>
+                <div class="col-3">
+                  <input class="btn btn-primary" type="submit" value="Enviar">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      <%} %>
 </div>
 
 <%- include("templates/footer") %>

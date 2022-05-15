@@ -8,7 +8,7 @@
       </button>
     </div>
     <div class="row">
-      <table class="table table-bordered" style="border: 3px solid black;">
+      <table class="table table-bordered text-center align-middle" style="border: 3px solid black;">
         <thead>
           <tr>
             <th scope="col">Código</th>
@@ -16,6 +16,7 @@
             <th scope="col">Empresa</th>
             <th scope="col">Tipo</th>
             <th scope="col">Precio</th>
+            <th scope="col">Imagen</th>
             <th scope="col" colspan="2"></th>
           </tr>
         </thead>
@@ -37,6 +38,26 @@
               <td>
                 <%= user.precio %>
               </td>
+              <% if(user.imagen != '') { %>
+                  <td>
+                  <img  
+                  src="https://s9mybucket.s3.amazonaws.com/<%= user.imagen %>" alt="" width="250px" height="150px">
+                  </td>
+              <% } %>
+              <% if(user.imagen == ''){ %>
+              <td>
+                <form action="/uploadImage<%=user.codigo%>" method="post" enctype="multipart/form-data">
+                  <div class="row d-flex">
+                    <div class="col-9">
+                      <input type="file" class="form-control" required name="imagen" id="imagen">
+                    </div>
+                    <div class="col-3">
+                      <input type="submit" class="btn btn-primary" value="Enviar">
+                    </div>
+                  </div>
+                </form>
+              </td>
+              <% } %>
               <td>
                 <a type="button" class="btn btn-primary" href="/update<%= user._id %>">
                   Editar
@@ -44,6 +65,7 @@
               </td>
               <td>
                 <form action="/delete<%=user._id%>" method="post">
+                  <input type="text" hidden="true" id="imagendelete" name="imagendelete" value="<%= user.imagen %>">
                   <input type="submit" class="btn btn-danger" role="button" value="Eliminar">
                 </form>
               </td>

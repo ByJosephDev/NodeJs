@@ -88,7 +88,7 @@ router.post('/create', function(req, res, next){
 
 });
 
-router.post('/delete:id', function(req, res, next){
+router.post('/delete:id', async function(req, res, next){
 
   const id = req.params.id;
   const key = req.body.imagendelete;
